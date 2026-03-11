@@ -20,7 +20,7 @@ def main():
     # Creem una llista de 256 posicions (inicialitzades a 0) per comptar les aparicions de cada valor de byte (0 a 255)
     byte_counts = [0] * 256
     
-    print(f"Iniciant generació i xifratge de {num_blocks} blocs (1.600.000 bytes)...")
+    print(f"Iniciant generacio i xifratge de {num_blocks} blocs (1.600.000 bytes)...")
     
     # 2. Bucle principal
     for i in range(num_blocks):
@@ -36,7 +36,7 @@ def main():
             
         # Mostrem el progrés
         if (i + 1) % 10000 == 0:
-            print(f"  Progrés: {i + 1} / {num_blocks} blocs processats...")
+            print(f"  Progres: {i + 1} / {num_blocks} blocs processats...")
 
     # 3. Anàlisi Estadística
     total_bytes = num_blocks * 16
@@ -44,22 +44,22 @@ def main():
     expected_frequency = total_bytes / 256.0
     expected_counts = [expected_frequency] * 256
     
-    print(" RESULTATS DE L'ANÀLISI ESTADÍSTICA (TEST CHI-QUADRAT)")
+    print(" RESULTATS DE L'ANALISI ESTADISTICA (TEST CHI-QUADRAT)")
     print(f"Total de bytes xifrats: {total_bytes}")
-    print(f"Freqüència esperada per byte: {expected_frequency}")
+    print(f"Frequencia esperada per byte: {expected_frequency}")
     
     # Fem el test de Chi-quadrat
     chi2_stat, p_value = chisquare(f_obs=byte_counts, f_exp=expected_counts)
     
-    print(f"Estadístic Chi-quadrat: {chi2_stat:.4f}")
+    print(f"Estadistic Chi-quadrat: {chi2_stat:.4f}")
     print(f"P-valor (p-value):      {p_value:.6f}")
     
     if p_value > 0.05:
-        print("\nCONCLUSIÓ: El p-valor és > 0.05. No es pot rebutjar la hipòtesi nul·la.")
-        print("La distribució dels bytes ÉS compatible amb una distribució uniforme.")
+        print("\nCONCLUSIO: El p-valor es > 0.05. No es pot rebutjar la hipotesi nul·la.")
+        print("La distribucio dels bytes ES compatible amb una distribucio uniforme.")
     else:
-        print("\nCONCLUSIÓ: El p-valor és <= 0.05. Es rebutja la hipòtesi nul·la.")
-        print("La distribució NO sembla uniforme.")
+        print("\nCONCLUSIO: El p-valor es <= 0.05. Es rebutja la hipotesi nul·la.")
+        print("La distribucio NO sembla uniforme.")
     
     # 4. Representació gràfica
     plt.figure(figsize=(12, 6))
@@ -71,9 +71,9 @@ def main():
     plt.axhline(y=expected_frequency, color='red', linestyle='dashed', linewidth=2, 
                 label=f'Freq. Esperada Uniforme ({expected_frequency})')
     
-    plt.title("Distribució de les Freqüències dels Bytes al Text Xifrat", fontsize=14)
+    plt.title("Distribucio de les Frequencies dels Bytes al Text Xifrat", fontsize=14)
     plt.xlabel("Valor del Byte (0 - 255)", fontsize=12)
-    plt.ylabel("Freqüència d'aparició", fontsize=12)
+    plt.ylabel("Frequencia d'aparicio", fontsize=12)
     plt.xlim(-1, 256)
     
     # Ajustem l'eix Y per centrar-nos on estan les dades
@@ -87,7 +87,7 @@ def main():
     # Guardem el gràfic per a l'informe
     nom_arxiu = "grafic_estadistica_bytes.png"
     plt.savefig(nom_arxiu, dpi=300, bbox_inches='tight')
-    print(f"S'ha generat i guardat el gràfic amb el nom: '{nom_arxiu}'.")
+    print(f"S'ha generat i guardat el grafic amb el nom: '{nom_arxiu}'.")
     
     plt.show()
 
